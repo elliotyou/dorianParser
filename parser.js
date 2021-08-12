@@ -4,16 +4,13 @@ module.exports = {
   sizeMappingTalbe: {},
   bufferReport: {},
   takeOneLine() {
-    console.log('into takeOneLine, this.originalText =', this.originalText)
     const position = this.originalText.indexOf('\n')
     if (position !== -1) {
       this.currentLine = this.originalText.substring(0, position)
       this.originalText = this.originalText.substring(position + 1)
     }
-    console.log('leaving takeOneLine, this.originalText =', this.originalText)
   },
   takeHeader() {
-    console.log('--into takeHeader...currentLine =', this.currentLine)
     this.takePrefix()
     this.takeCRC()
     this.takeLen()
@@ -45,7 +42,6 @@ module.exports = {
     this.currentLine = this.currentLine.substring(16)
   },
   takeTimeStamps() {
-    console.log('--into takeTimeStamps...currentLine =', this.currentLine)
     this.takeGpsTime()
     this.takeRTCTime()
     this.takeSendTime()
@@ -66,7 +62,7 @@ module.exports = {
     this.currentLine = this.currentLine.substring(8)
   },
   takeLocation() {
-    console.log('--into takeLocation...currentLine =', this.currentLine)
+    // node
     this.takeLongitude()
     this.takeLatitude()
   },
@@ -81,7 +77,7 @@ module.exports = {
     this.currentLine = this.currentLine.substring(8)
   },
   takeBodyValues() {
-    console.log('--into takeBodyValues...currentLine =', this.currentLine)
+    // node
     this.takeHeading()
     this.takeReportId()
     this.takeOdom()

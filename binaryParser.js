@@ -19,21 +19,17 @@ fs.readFile('example.log', 'utf8', (err, data) => {
     parser.takeTimeStamps()
     parser.takeLocation()
     parser.takeBodyValues()
-    output.push(parser.bufferReport)
     // console.log('parser.bufferReport =', parser.bufferReport)
-    console.log('output =', output)
+    output.push(Object.values(parser.bufferReport).join(','))
   }
-  // console.log('output =', output)
 
-
-
-  // fs.writeFile(`${IMEI}_v1.csv`, outputContent(simulatedLines), err => {
-  //   if (err) {
-  //     console.error(err)
-  //     return
-  //   }
-  //   console.log('寫入成功')
-  // })
+  fs.writeFile(`output_v1.csv`, output.join('\n'), err => {
+    if (err) {
+      console.error(err)
+      return
+    }
+    console.log('寫入成功')
+  })
 })
 
 
